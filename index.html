@@ -32,7 +32,7 @@
 		<button onclick="doEverything(this,0,window.url,function(url,args){document.getElementById('res').download='aware.png';document.getElementById('res').href=document.getElementById('r').src=url;document.getElementById('res').style.display='';args[0].removeAttribute('disabled');window.otherBtn(args[0]).removeAttribute('disabled');document.querySelector('#input').removeAttribute('disabled');});">2x Scale</button><br/>
 		<button onclick="doGIF(this,window.url);">Generate 20-Frame GIF at 1.05x Scale per Frame</button><br>
 		&nbsp;<span>&nbsp;<i>&nbsp;<b>^</b>This one does NOT support animated GIFs. (but it will still process the first frame of one)</i><br><br>
-		<b>NOTE (for GIFs): </b>If the output GIF is missing sections of it, click <a href="http://adfoc.us/67096280153912" target="_blank">here</a>, upload the input GIF, open the "optimize" dropdown, and choose "coalesce"</span><br>
+		<b>NOTE (for GIFs): </b>If the output GIF is missing sections of it, click <a href="https://ezgif.com/optimize" target="_blank">here</a>, upload the input GIF, open the "optimize" dropdown, and choose "coalesce"</span><br>
 		<progress min="0" max="100" value="0"></progress>
 		<label for="input" style="cursor:pointer;"><h3>Input</h3><img id="i" src="image.jpg"/></label><br>
 		<canvas id="c" style="display:none;"></canvas><br>
