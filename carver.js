@@ -170,8 +170,16 @@ function Carver(canvasId, url) {
 	// load image
 	var img = new Image();
 	img.onload = function() {
-		w = this.width;
-		h = this.height;
+		var w = this.width;
+		var h = this.height;
+		if (w > 512 || h > 512) {
+			var ratio = Math.min(512 / w, 512 / h, 0.5);
+			// tinyhack: if any side is > 512. Let's implement it as a 0.5 scale factor if > 512.
+			// scaling 50% smaller. = faster operation
+			var scale = 0.5;
+			w = Math.floor(w * scale);
+			h = Math.floor(h * scale);
+		}
 		carver.canvas.width = w;
 		carver.canvas.height = h;
 		carver.context.drawImage(img,0,0,w,h);
@@ -218,7 +226,7 @@ function Carver(canvasId, url) {
 					delta_left = pixel_diff(x, j, x-1, j+1);
 				}
 				// if there is a pixel on the right, check how different it is.
-				if(x != w-1) {
+				if(x != this.w-1) {
 					delta_right = pixel_diff(x, j, x+1, j+1);
 				}
 				// check which way we're going next.
