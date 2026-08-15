@@ -29,6 +29,7 @@
 		<h1>Content-Aware Scaling</h1>
 		<input type="checkbox" checked/> Faster Scaling <span><i>(disable if you want to watch the image get scaled)</i></span><br>
 		<input type="checkbox" checked/> Scale Vertically<br>
+		<input type="checkbox" checked/> Auto-downscale > 512px<br>
 		<button onclick="doEverything(this,0,window.url,function(url,args){document.getElementById('res').download='aware.png';document.getElementById('res').href=document.getElementById('r').src=url;document.getElementById('res').style.display='';args[0].removeAttribute('disabled');window.otherBtn(args[0]).removeAttribute('disabled');document.querySelector('#input').removeAttribute('disabled');});">2x Scale</button><br/>
 		<button onclick="doGIF(this,window.url);">Generate 20-Frame GIF at 1.05x Scale per Frame</button><br>
 		&nbsp;<span>&nbsp;<i>&nbsp;<b>^</b>This one does NOT support animated GIFs. (but it will still process the first frame of one)</i><br><br>

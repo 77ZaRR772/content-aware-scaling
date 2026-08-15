@@ -172,7 +172,7 @@ function Carver(canvasId, url) {
 	img.onload = function() {
 		var w = this.width;
 		var h = this.height;
-		if (w > 512 || h > 512) {
+		if (document.querySelectorAll("input[type=checkbox]")[2].checked && (w > 512 || h > 512)) {
 			var ratio = Math.min(512 / w, 512 / h, 0.5);
 			// tinyhack: if any side is > 512. Let's implement it as a 0.5 scale factor if > 512.
 			// scaling 50% smaller. = faster operation
