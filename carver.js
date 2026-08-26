@@ -274,13 +274,42 @@ function Carver(canvasId, url) {
 		this.w--;
 	};
 }
-document.querySelector('#input').onchange=function(){
-	var file=document.querySelector('#input').files[0];
-	var reader=new FileReader();
-	reader.addEventListener("load",function(){
-		window.url=reader.result;
-		window.scaleGif=file.type.toLowerCase()=="image/gif";
-		document.getElementById("i").src=window.url;
-	},false);
-	if(file)reader.readAsDataURL(file);
+function handleFile(file) {
+	if (!file || !file.type.startsWith('image/')) return;
+	var reader = new FileReader();
+	reader.addEventListener("load", function() {
+		window.url = reader.result;
+		window.scaleGif = file.type.toLowerCase() == "image/gif";
+		document.getElementById("i").src = window.url;
+	}, false);
+	reader.readAsDataURL(file);
+}
+
+document.querySelector('#input').onchange = function() {
+	handleFile(this.files[0]);
+};
+
+const dropZone = document.getElementById('drop-zone');
+
+dropZone.addEventListener('dragover', (e) => {
+	e.preventDefault();
+	dropZone.style.borderColor = '#000';
+	dropZone.style.backgroundColor = '#f0f0f0';
+});
+
+dropZone.addEventListener('dragleave', () => {
+	dropZone.style.borderColor = '#ccc';
+	dropZone.style.backgroundColor = 'transparent';
+});
+
+dropZone.addEventListener('drop', (e) => {
+	e.preventDefault();
+	dropZone.style.borderColor = '#ccc';
+	dropZone.style.backgroundColor = 'transparent';
+	const file = e.dataTransfer.files[0];
+	handleFile(file);
+});
+
+dropZone.onclick = () => {
+	document.querySelector('#input').click();
 };

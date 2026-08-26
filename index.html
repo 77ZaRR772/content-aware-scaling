@@ -35,7 +35,9 @@
 		&nbsp;<span>&nbsp;<i>&nbsp;<b>^</b>This one does NOT support animated GIFs. (but it will still process the first frame of one)</i><br><br>
 		<b>NOTE (for GIFs): </b>If the output GIF is missing sections of it, click <a href="https://ezgif.com/optimize" target="_blank">here</a>, upload the input GIF, open the "optimize" dropdown, and choose "coalesce"</span><br>
 		<progress min="0" max="100" value="0"></progress>
-		<label for="input" style="cursor:pointer;"><h3>Input</h3><img id="i" src="image.jpg"/></label><br>
+		<div id="drop-zone" style="border: 2px dashed #ccc; padding: 20px; text-align: center; cursor: pointer; margin-bottom: 10px;">
+			<label for="input" style="cursor:pointer;"><h3>Input (Click or Drag & Drop)</h3><img id="i" src="image.jpg"/></label>
+		</div><br>
 		<canvas id="c" style="display:none;"></canvas><br>
 		<canvas id="d" style="display:none;"></canvas><br>
 		<a id="res" style="display:none;" href="image.jpg" download="aware.png"><h3>Result</h3><img id="r"/></a>
