@@ -35,7 +35,10 @@ async function doGIF(btn,url){
 		window.gif.addFrame(window.memvas,{delay:50});
 		window.wait=1;
 	}
-	window.gif.on('finished',function(blob){document.querySelector("progress").value=0;var url=window.URL.createObjectURL(blob);document.getElementById("r").src=url;document.getElementById("res").href=url;document.getElementById("res").download="aware.gif";document.getElementById("res").style.display="";});
+	window.gif.on('finished',function(blob){document.querySelector("progress").value=0;var url=window.URL.createObjectURL(blob);document.getElementById("r").src=url;document.getElementById("res").href=url;
+		var fileName = window.originalFileName ? window.originalFileName.substring(0, window.originalFileName.lastIndexOf('.')) : 'aware';
+		document.getElementById("res").download=fileName + "_aware.webp";
+		document.getElementById("res").style.display="";});
 	window.gif.render();
 	btn.removeAttribute("disabled");
 	window.otherBtn(btn).removeAttribute("disabled");
@@ -86,7 +89,10 @@ async function doEverything(btn,gif,url,cb){
 							iimg.src=ur;
 							if(frm+1==window.gifFrames.length){
 								cb(ur,[btn]);
-								window.giff.on('finished',function(blob){var url=window.URL.createObjectURL(blob);document.getElementById("r").src=url;document.getElementById("res").href=url;document.getElementById("res").download="aware.gif";document.getElementById("res").style.display="";});
+								window.giff.on('finished',function(blob){var url=window.URL.createObjectURL(blob);document.getElementById("r").src=url;document.getElementById("res").href=url;
+									var fileName = window.originalFileName ? window.originalFileName.substring(0, window.originalFileName.lastIndexOf('.')) : 'aware';
+									document.getElementById("res").download=fileName + "_aware.webp";
+									document.getElementById("res").style.display="";});
 								window.giff.render();
 								console.log("h");
 							}
@@ -115,7 +121,7 @@ async function doCarve(url, gif, callback, callbackvars){try{
 		await new Promise(sleep=>setTimeout(sleep,document.querySelector('input[type=checkbox]').checked?0:100));
 	}
 	var imgc=new Image();
-	imgc.src=window.c.canvas.toDataURL("image/png");
+	imgc.src=window.c.canvas.toDataURL("image/webp");
 	imgc.onload=async function(){
 	if(document.querySelectorAll("input[type=checkbox]")[1].checked){
 		window.memvas.width=window.c.h;
@@ -133,10 +139,10 @@ async function doCarve(url, gif, callback, callbackvars){try{
 	window.c.canvas.style.display="none";
 	if(!document.querySelectorAll("input[type=checkbox]")[1].checked){
 		if(!gif){document.querySelector("progress").value=0;}
-		callback(window.memvas.toDataURL("image/png"),callbackvars);
+		callback(window.memvas.toDataURL("image/webp", 0.9),callbackvars);
 		return;
 	}
-	window.d=new Carver("d",window.memvas.toDataURL("image/png"));
+	window.d=new Carver("d",window.memvas.toDataURL("image/webp"));
 	while(typeof window.d.img==="undefined"){await new Promise(sleep=>setTimeout(sleep,0));}
 	window.d.canvas.style.display="";
 	document.querySelector("progress").max=window.d.canvas.width;
@@ -146,7 +152,7 @@ async function doCarve(url, gif, callback, callbackvars){try{
 		await new Promise(sleep=>setTimeout(sleep,document.querySelector('input[type=checkbox]').checked?0:100));
 	}
 	var imgd=new Image();
-	imgd.src=window.d.canvas.toDataURL("image/png");
+	imgd.src=window.d.canvas.toDataURL("image/webp");
 	imgd.onload=async function(){
 	window.memvas.width=window.c.canvas.width;
 	window.memvas.height=window.d.canvas.width;
@@ -158,7 +164,7 @@ async function doCarve(url, gif, callback, callbackvars){try{
 	window.memtext.restore();
 	window.c.canvas.style.display=window.d.canvas.style.display="none";
 	if(!gif){document.querySelector("progress").value=0;}
-	callback(window.memvas.toDataURL("image/png"),callbackvars);
+	callback(window.memvas.toDataURL("image/webp", 0.9),callbackvars);
 	}
 	}
 }catch(e){alert(e);}}
@@ -279,6 +285,7 @@ function handleFile(file) {
 	var reader = new FileReader();
 	reader.addEventListener("load", function() {
 		window.url = reader.result;
+		window.originalFileName = file.name;
 		window.scaleGif = file.type.toLowerCase() == "image/gif";
 		document.getElementById("i").src = window.url;
 	}, false);

@@ -2,12 +2,9 @@
 <html>
 	<head>
 		<title>Content-Aware Scaling</title>
-		<script async src="https://arc.io/widget.min.js#HEPCFa3K"></script>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<script>window.onerror=function(errorMsg,url,lineNumber){/*alert('Error: '+errorMsg+' Script: '+url+' Line: '+lineNumber);*/}</script>
 		<style type="text/css">
-			/*@import url('https://pingcount.glitch.me/6dGUokYh8u');*/
 			img,canvas{margin:0;border:0;padding:0;}
 			h3{text-decoration:underline;color:blue;}
 			@media screen and (orientation:portrait){img,#c{width:75%;height:auto;}#d{width:auto;height:75vw;}}
@@ -15,14 +12,6 @@
 			#d{transform-origin:top right;-ms-transform:translateX(-100%) rotate(-90deg);-webkit-transform:translateX(-100%) rotate(-90deg);transform:translateX(-100%) rotate(-90deg);}
 			span{font-size:.75em;}
 		</style>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-G6M2HBD1Y7"></script>
-		<script>
-		  window.dataLayer=window.dataLayer||[];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js',new Date());
-		  gtag('config','G-G6M2HBD1Y7');
-		</script>
 	</head>
 	<body>
 	        <input type="file" id="input" style="visibility:hidden;position:fixed;z-index:-1;bottom:0;right:0;"/>
@@ -30,7 +19,7 @@
 		<input type="checkbox" checked/> Faster Scaling <span><i>(disable if you want to watch the image get scaled)</i></span><br>
 		<input type="checkbox" checked/> Scale Vertically<br>
 		<input type="checkbox" checked/> Auto-downscale > 512px<br>
-		<button onclick="doEverything(this,0,window.url,function(url,args){document.getElementById('res').download='aware.png';document.getElementById('res').href=document.getElementById('r').src=url;document.getElementById('res').style.display='';args[0].removeAttribute('disabled');window.otherBtn(args[0]).removeAttribute('disabled');document.querySelector('#input').removeAttribute('disabled');});">2x Scale</button><br/>
+		<button onclick="doEverything(this,0,window.url,function(url,args){document.getElementById('res').download='aware.webp';document.getElementById('res').href=document.getElementById('r').src=url;document.getElementById('res').style.display='';args[0].removeAttribute('disabled');window.otherBtn(args[0]).removeAttribute('disabled');document.querySelector('#input').removeAttribute('disabled');});">2x Scale</button><br/>
 		<button onclick="doGIF(this,window.url);">Generate 20-Frame GIF at 1.05x Scale per Frame</button><br>
 		&nbsp;<span>&nbsp;<i>&nbsp;<b>^</b>This one does NOT support animated GIFs. (but it will still process the first frame of one)</i><br><br>
 		<b>NOTE (for GIFs): </b>If the output GIF is missing sections of it, click <a href="https://ezgif.com/optimize" target="_blank">here</a>, upload the input GIF, open the "optimize" dropdown, and choose "coalesce"</span><br>
@@ -40,7 +29,7 @@
 		</div><br>
 		<canvas id="c" style="display:none;"></canvas><br>
 		<canvas id="d" style="display:none;"></canvas><br>
-		<a id="res" style="display:none;" href="image.jpg" download="aware.png"><h3>Result</h3><img id="r"/></a>
+		<a id="res" style="display:none;" href="image.jpg" download="aware.webp"><h3>Result</h3><img id="r"/></a>
 		<script src="gif.js"></script>
 		<script src="noconflict-gifuct-js.min.js"></script>
 		<script src="carver.js"></script>
